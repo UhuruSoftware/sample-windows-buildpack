@@ -4,4 +4,5 @@ set cache_path=%2
 :: do whatever is needed for the application to run
 echo Copying buildpack scripts ...
 xcopy %~dp0\..\scheduler %build_path% /S /E
+echo Done.
 exit /b 0
