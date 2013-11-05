@@ -8,6 +8,6 @@ del "%~dp0\..\%VCAP_WINDOWS_USER%.aux"
 
 echo "Configuring the scheduled task."
 
-schtasks /create /ru %VCAP_WINDOWS_USER% /rp %VCAP_WINDOWS_USER_PASSWORD% /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml
+schtasks /create /ru %VCAP_WINDOWS_USER% /rp %VCAP_WINDOWS_USER_PASSWORD% /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml /tn %VCAP_WINDOWS_USER%
 
 timeout -1
