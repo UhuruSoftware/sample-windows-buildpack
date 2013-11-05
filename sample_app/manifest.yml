@@ -1,0 +1,9 @@
+---
+applications:
+- name: testcbp
+  memory: 128M
+  instances: 1
+  host: testcbp
+  domain: apps.uhurusoft.com
+  path: .
+  buildpack: https://github.com/viovanov/sample-windows-buildpack.git

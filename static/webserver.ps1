@@ -16,13 +16,15 @@ while ($listener.IsListening) {
 
     $currentTime = date
     
-    $filename = [System.IO.Path]::GetFileName($request.RawUrl)
+    $filename = $request.Url.AbsolutePath
 
-    Write-Host "[${currentTime}] /${filename}"
+    Write-Host "[${currentTime}] REQUEST '${filename}'"
 
-    if ($filename -eq '') { $filename = 'index.html' }
+    if ($filename -eq '/') { $filename = 'index.html' }
 
     $filename = Join-Path $path $filename
+
+    Write-Host "[${currentTime}] RESPONSE '${filename}'"
 
     if ((Test-Path $filename) -ne $true)
     {
