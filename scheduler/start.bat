@@ -5,8 +5,8 @@ set errorlog=%~dp0\..\..\logs\stderr.log
 
 echo "Setting up proper directory in the schedule xml file." >> %logfile%
 
-powershell "Get-Content /xml %~dp0\..\schedule.xml | ForEach-Object { $_ -replace '^<Command^>', '^<Command^>%HOME%\' } | Set-Content /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml"
-powershell "Get-Content /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml | ForEach-Object { $_ -replace '^</Command^>', '^</Command^>^<WorkingDirectory^>%HOME%^</WorkingDirectory>^' } | Set-Content /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml"
+powershell "Get-Content '%~dp0\..\schedule.xml' | ForEach-Object { $_ -replace '^<Command^>', '^<Command^>%HOME%\' } | Set-Content '%~dp0\..\%VCAP_WINDOWS_USER%.xml'"
+powershell "Get-Content '%~dp0\..\%VCAP_WINDOWS_USER%.xml' | ForEach-Object { $_ -replace '^</Command^>', '^</Command^>^<WorkingDirectory^>%HOME%^</WorkingDirectory>^' } | Set-Content '%~dp0\..\%VCAP_WINDOWS_USER%.xml'"
 
 echo "Configuring the scheduled task." >> %logfile%
 
