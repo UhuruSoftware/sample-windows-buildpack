@@ -1,5 +1,5 @@
 ﻿$port = $env:PORT
-$path = $env:HOMEPATH
+$path = $env:HOME
 
 Write-Host "Starting a web server on port $port ..."
 
