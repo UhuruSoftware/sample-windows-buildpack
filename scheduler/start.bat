@@ -1,16 +1,13 @@
 @echo off
 
-set logfile=%~dp0\..\..\logs\stdout.log
-set errorlog=%~dp0\..\..\logs\stderr.log
-
-echo "Setting up proper directory in the schedule xml file." >> %logfile%
+echo "Setting up proper directory in the schedule xml file."
 
 powershell "Get-Content '%~dp0\..\schedule.xml' | ForEach-Object { $_ -replace '^<Command^>', '^<Command^>%HOME%\' } | Set-Content '%~dp0\..\%VCAP_WINDOWS_USER%.aux'"
 powershell "Get-Content '%~dp0\..\%VCAP_WINDOWS_USER%.aux' | ForEach-Object { $_ -replace '^</Command^>', '^</Command^>^<WorkingDirectory^>%HOME%^</WorkingDirectory>^' } | Set-Content '%~dp0\..\%VCAP_WINDOWS_USER%.xml'"
 del "%~dp0\..\%VCAP_WINDOWS_USER%.aux"
 
-echo "Configuring the scheduled task." >> %logfile%
+echo "Configuring the scheduled task."
 
-schtasks /create /ru %VCAP_WINDOWS_USER% /rp %VCAP_WINDOWS_USER_PASSWORD% /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml >> %logfile% 2>> %errorlog%
+schtasks /create /ru %VCAP_WINDOWS_USER% /rp %VCAP_WINDOWS_USER_PASSWORD% /xml %~dp0\..\%VCAP_WINDOWS_USER%.xml
 
 timeout -1
