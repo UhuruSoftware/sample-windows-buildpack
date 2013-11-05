@@ -2,4 +2,4 @@
 
 echo "Starting a simple powershell webserver ..."
 
-powershell -ExecutionPolicy bypass -File webserver.ps1
+powershell -ExecutionPolicy bypass -File %~dp0\webserver.ps1
